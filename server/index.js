@@ -11,7 +11,7 @@ app.use(
 // Enable preflight requests handling for all routes
 app.options("*", cors());
 
-app.get("/some-route", (req, res) => {
+app.get("/", (req, res) => {
   res.json({ message: "This route is CORS-enabled" });
 });
 
