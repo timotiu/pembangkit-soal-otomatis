@@ -14,7 +14,7 @@ export function Home(props) {
       document.body.style.cursor = "default";
     }, [2000]);
     setNomor(e.target.parentNode.nextElementSibling.value);
-    const res = await axios.post("http://localhost:3001", {
+    const res = await axios.post("https://backend-pembangkit-soal-otomatis.vercel.app/", {
       nomor: e.target.parentNode.nextElementSibling.value,
       inputSoal,
       tipeSoal,
