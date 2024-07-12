@@ -20,7 +20,8 @@ export function Home(props) {
       tipeSoal,
       jumlahSoal
     });
-    setHasilSoal([res.data]);
+    console.log(res.data)
+    setHasilSoal(res.data);
   }
 
   const hoverTooltip = (e) => {
