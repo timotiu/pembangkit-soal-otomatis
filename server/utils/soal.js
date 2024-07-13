@@ -24,8 +24,8 @@ function getSoal(soal) {
   });
 }
 
-async function hasilSoal(inputSoal, jumlahSoal,tipeSoal, callback) {
-  let soal = `Buatlah tipe ${tipeSoal}, untuk membuat ${jumlahSoal} soal pilihan ganda mata pelajaran Bahasa Indonesia beserta kunci jawabannya  guna menguji siswa dalam "${inputSoal}"`;
+async function hasilSoal(inputSoal, jumlahSoal,tipeSoal,tipeMapel, callback) {
+  let soal = `Buatlah tipe ${tipeSoal}, untuk membuat ${jumlahSoal} soal pilihan ganda mata pelajaran ${tipeMapel} beserta kunci jawabannya  guna menguji siswa dalam "${inputSoal}"`;
   console.log(soal);
   const response = await openAi.createChatCompletion({
     model: "gpt-4-turbo",
