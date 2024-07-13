@@ -22,8 +22,8 @@ export function Home(props) {
         jumlahSoal,
         tipeMapel
       });
-      console.log(result);
-      // setHasilSoal(result.data.soal);
+      console.log(result.data);
+      setHasilSoal(result.data.soal);
     } catch (error) {
       console.error(error.response.data);     // NOTE - use "error.response.data` (not "error")
     }
