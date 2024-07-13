@@ -5,7 +5,7 @@ import readline from "readline";
 
 const openAi = new OpenAIApi(
   new Configuration({
-    apiKey: "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",
+    apiKey: "sk-proj-uwsksBs7a8z3RzPQ47mZT3BlbkFJViKrW9EbhMtymrjYgtVN",
   })
 );
 
