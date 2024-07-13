@@ -6,6 +6,7 @@ export function Home(props) {
   const [tipeSoal, setTipeSoal] = useState("C1");
   const [hasilSoal, setHasilSoal] = useState([]);
   const [jumlahSoal, setJumlahSoal] = useState(1);
+  const [tipeMapel,setTipeMapel]=useState("Bahasa Indonesia");
   const [nomor, setNomor] = useState(0);
   async function handleDataSoal(e) {
     document.body.style.cursor = "wait";
@@ -18,10 +19,11 @@ export function Home(props) {
         nomor: e.target.parentNode.nextElementSibling.value,
         inputSoal,
         tipeSoal,
-        jumlahSoal
+        jumlahSoal,
+        tipeMapel
       });
-      console.log(result.data);
-      setHasilSoal(result.data.soal);
+      console.log(result);
+      // setHasilSoal(result.data.soal);
     } catch (error) {
       console.error(error.response.data);     // NOTE - use "error.response.data` (not "error")
     }
@@ -141,9 +143,9 @@ export function Home(props) {
         </span>
         <div className="flex gap-2 mb-5">
           <span>Tipe Mata Pelajaran :</span>
-          <select name="" id="" className="w-[6em]">
-            <option value="Literasi">Literasi</option>
-            <option value="Numerasi">Numerasi</option>
+          <select name="" id="" className="w-40" onChange={(e)=>setTipeMapel(e.target.value)}>
+            <option value="Bahasa Indonesia">Bahasa Indonesia</option>
+            <option value="Matematika">Matematika</option>
           </select>
         </div>
         {arrSoal.map((soal) => soal)}
