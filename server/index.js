@@ -28,8 +28,130 @@ app.get("/", (req, res) => {
   res.json("Server sedang berjalan bro...");
 });
 app.post("/", (req, res) => {
-  res.send(JSON.stringify(Math.random().toString()));
+  // res.send(JSON.stringify(Math.random().toString()));
+    hasilSoal(
+      req.body.inputSoal,
+      req.body.jumlahSoal,
+      req.body.tipeSoal,
+      async (result) => {
+        let arrSoal = [];
+        result.forEach((res) => arrSoal.push(res + "#"));
+        // async function updateData() {
+        //   try {
+        //     const conditions = { nomor: req.body.nomor };
+        //     console.log(req.body);
+        //     const newData = {
+        //       tipe: req.body.tipeSoal,
+        //       soal: `${arrSoal}`,
+        //       nomor: req.body.nomor,
+        //     };
+        //     // await soal.findOneAndUpdate(conditions, newData, {
+        //     //   upsert: true,
+        //     //   new: true,
+        //     // });
+        //     await soal.create(newData);
+        //   } catch (error) {
+        //     console.error(error);
+        //   }
+        // }
+        // updateData();
+        // hasilPilihan(req.body.inputSoal, (result) => {
+        //   let arrJawaban = [];
+        //   result.forEach((res) => arrJawaban.push(res + "#"));
+        //   async function updateData() {
+        //     try {
+        //       const conditions = { nomor: req.body.nomor };
+        //       const newData = {
+        //         jawaban: `${arrJawaban}`,
+        //         nomor: req.body.nomor,
+        //         tipe: req.body.tipeSoal,
+        //       };
+        //       // await jawaban.findOneAndUpdate(conditions, newData, {
+        //       //   upsert: true,
+        //       //   new: true,
+        //       // });
+        //       // await jawaban.updateOne(newData);
+        //       await jawaban.create(newData);
+        //     } catch (error) {
+        //       console.error(error);
+        //     }
+        //   }
+        //   updateData();
+        // });
+        res.json({
+          soal: arrSoal,
+        });
+      }
+    );
 
+});
+
+app.get("/dataSoalJawaban", async (req, res) => {
+  const soals = await soal.find().maxTimeMS(20000);
+  const jawabans = await jawaban.find();
+  res.json({ soals, jawabans });
+});
+
+app.get("/paketSoal", async (req, res) => {
+  // const soals = await soal.find().maxTimeMS(20000);~
+  // const jawabans = await jawaban.find().maxTimeMS(20000);
+  const result = { message: "Halo" };
+  res.json(result);
+});
+
+// app.post("/paketSoal", async (req, res) => {
+//   const soals = await soal.find().maxTimeMS(20000);
+//   const jawabans = await jawaban.find().maxTimeMS(20000);
+//   let nomor = parseInt(req.body.nomor);
+//   if (req.body.mundur) {
+//     nomor -= 1;
+//   } else {
+//     nomor += 1;
+//   }
+//     res.render("pageSoal", {
+//       title: "Halaman Soal",
+//       layout: "main-layout",
+//       dataSoals: soals,
+//       dataJawabans: jawabans,
+//       nomor,
+//   })
+// });
+
+app.post("/paketSoal", async (req, res) => {
+  const soals = await soal.find();
+  const jawabans = await jawaban.find();
+  let nomor = parseInt(req.body.nomor);
+  if (req.body.mundur) {
+    nomor -= 1;
+  } else {
+    nomor += 1;
+  }
+  res.render("pageSoal", {
+    title: "Halaman Soal",
+    layout: "main-layout",
+    dataSoals: soals,
+    dataJawabans: jawabans,
+    nomor,
+  });
+});
+app.post("/pageSoal", async (req, res) => {
+  const soals = await soal.find().maxTimeMS(20000);
+  const jawabans = await jawaban.find().maxTimeMS(20000);
+  let nomor = parseInt(req.body.nomor);
+  const skor = req.body.skor;
+  if (req.body.mundur) {
+    nomor -= 1;
+  } else {
+    nomor += 1;
+  }
+  res.render("pageSoal", {
+    title: "Halaman Soal",
+    layout: "main-layout",
+    dataSoals: soals,
+    dataJawabans: jawabans,
+    nomor,
+    skor,
+  });
 });
 
 app.listen(port, () => {
