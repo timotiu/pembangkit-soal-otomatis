@@ -13,14 +13,18 @@ export function Home(props) {
       document.body.style.cursor = "default";
     }, [2000]);
     setNomor(e.target.parentNode.nextElementSibling.value);
-    const res = await axios.post("http://localhost:3001", {
-      nomor: e.target.parentNode.nextElementSibling.value,
-      inputSoal,
-      tipeSoal,
-      jumlahSoal
-    });
-    console.log(res.data.soal);
-    setHasilSoal(res.data.soal);
+    try {
+      const result=await axios.post("https://backend-pembangkit-soal-otomatis.vercel.app/", {
+        nomor: e.target.parentNode.nextElementSibling.value,
+        inputSoal,
+        tipeSoal,
+        jumlahSoal
+      });
+      console.log(result);
+      // setHasilSoal(result.data.soal);
+    } catch (error) {
+      console.error(error.response.data);     // NOTE - use "error.response.data` (not "error")
+    }
   }
 
   const hoverTooltip = (e) => {
