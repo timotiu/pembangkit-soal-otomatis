@@ -2,11 +2,10 @@ import { config } from "dotenv";
 config();
 import { Configuration, OpenAIApi } from "openai";
 import readline from "readline";
-const key=process.env.OPEN_AI_API_KEY.substring(2);
 console.log(key);
 const openAi = new OpenAIApi(
   new Configuration({
-    apiKey: key,
+    apiKey: process.env.OPEN_AI_API_KEY,
   })
 );
 
