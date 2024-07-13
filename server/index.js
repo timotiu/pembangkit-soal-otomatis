@@ -18,6 +18,8 @@ let nomorArr = [];
 app.use(
   cors({
     allowedHeaders: ["Content-Type"],
+    origin: "*", // or '*' for any origin
+    optionsSuccessStatus: 200,
   })
 );
 connect();
