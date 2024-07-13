@@ -7,20 +7,19 @@ export function Home(props) {
   const [hasilSoal, setHasilSoal] = useState([]);
   const [jumlahSoal, setJumlahSoal] = useState(1);
   const [nomor, setNomor] = useState(0);
-
   async function handleDataSoal(e) {
     document.body.style.cursor = "wait";
     setTimeout(() => {
       document.body.style.cursor = "default";
     }, [2000]);
     setNomor(e.target.parentNode.nextElementSibling.value);
-    const res = await axios.post("https://backend-pembangkit-soal-otomatis.vercel.app/", {
+    const res = await axios.post("http://localhost:3001", {
       nomor: e.target.parentNode.nextElementSibling.value,
       inputSoal,
       tipeSoal,
       jumlahSoal
     });
-    console.log(res.data)
+    console.log(res.data);
     setHasilSoal(res.data);
   }
 
@@ -42,13 +41,13 @@ export function Home(props) {
     arrSoal.push(
       <div key={i} className="soalContainer flex flex-col mb-4">
         <span className="flex gap-3 ">
-        <label
-          className="text-l font-serif font-semibold tracking-wider uppercase text-[#2B2E4A]"
-          htmlFor={"soal" + i}
-        >
-          Tujuan Pembelajaran {i}
-        </label>
-          <select name="" id="" onChange={(e)=>setTipeSoal(e.target.value)}>
+          <label
+            className="text-l font-serif font-semibold tracking-wider uppercase text-[#2B2E4A]"
+            htmlFor={"soal" + i}
+          >
+            Tujuan Pembelajaran {i}
+          </label>
+          <select name="" id="" onChange={(e) => setTipeSoal(e.target.value)}>
             <option value="C1">C1</option>
             <option value="C2">C2</option>
             <option value="C3">C3</option>
@@ -56,7 +55,7 @@ export function Home(props) {
             <option value="C5">C5</option>
             <option value="C5">C6</option>
           </select>
-          </span>
+        </span>
         <div className="flex gap-3 relative">
           <input
             onChange={(e) => {
@@ -68,7 +67,7 @@ export function Home(props) {
           />
           {/* <input  onChange={(e)=>{setJumlahSoal(e.target.value)}} id={'soal'+i} className="w-[30rem] bg-[#FBFADA] border-[1px] border-gray-400 rounded-md pl-2 text-wrap" type="text"/> */}
           <input
-          onChange={(e)=>setJumlahSoal(e.target.value)}
+            onChange={(e) => setJumlahSoal(e.target.value)}
             type="text"
             defaultValue={1}
             className="rounded-full w-[2em] h-[2em] bg-red-600 font-bold text-center text-white "
@@ -138,11 +137,7 @@ export function Home(props) {
         </span>
         <div className="flex gap-2 mb-5">
           <span>Tipe Mata Pelajaran :</span>
-          <select
-            name=""
-            id=""
-            className="w-[6em]"
-          >
+          <select name="" id="" className="w-[6em]">
             <option value="Literasi">Literasi</option>
             <option value="Numerasi">Numerasi</option>
           </select>
