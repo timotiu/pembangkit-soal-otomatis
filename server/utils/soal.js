@@ -2,10 +2,9 @@ import { config } from "dotenv";
 config();
 import { Configuration, OpenAIApi } from "openai";
 import readline from "readline";
-
 const openAi = new OpenAIApi(
   new Configuration({
-    apiKey: 'sk-None-oDfHTKmjhscCFsQqHVLBT3BlbkFJby3UmMDkU0e28fi1PHa8',
+    apiKey: process.env.OPEN_AI_API_KEY,
   })
 );
 
@@ -24,7 +23,7 @@ function getSoal(soal) {
   });
 }
 
-async function hasilSoal(inputSoal, jumlahSoal,tipeSoal,tipeMapel, callback) {
+async function hasilSoal(inputSoal, jumlahSoal, tipeSoal, tipeMapel, callback) {
   let soal = `Buatlah tipe ${tipeSoal}, untuk membuat ${jumlahSoal} soal pilihan ganda mata pelajaran ${tipeMapel} beserta kunci jawabannya  guna menguji siswa dalam "${inputSoal}"`;
   console.log(soal);
   const response = await openAi.createChatCompletion({
