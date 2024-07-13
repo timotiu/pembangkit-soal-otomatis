@@ -14,7 +14,6 @@ export function Home(props) {
       document.body.style.cursor = "default";
     }, [2000]);
     setNomor(e.target.parentNode.nextElementSibling.value);
-    try {
       const result=await axios.post("https://backend-pembangkit-soal-otomatis.vercel.app/", {
         nomor: e.target.parentNode.nextElementSibling.value,
         inputSoal,
@@ -24,9 +23,6 @@ export function Home(props) {
       });
       console.log(result.data);
       setHasilSoal(result.data.soal);
-    } catch (error) {
-      console.error(error.response.data);     // NOTE - use "error.response.data` (not "error")
-    }
   }
 
   const hoverTooltip = (e) => {
