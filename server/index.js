@@ -39,7 +39,7 @@ app.post("/", (req, res) => {
         result.forEach((res) => arrSoal.push(res + "#"));
         // async function updateData() {
         //   try {
-        //     const conditions = { nomor: req.body.nomor };
+        //     const conditions = { nomor: req.body.nomor }
         //     console.log(req.body);
         //     const newData = {
         //       tipe: req.body.tipeSoal,
