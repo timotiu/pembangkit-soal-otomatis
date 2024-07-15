@@ -2,7 +2,7 @@ import { config } from "dotenv";
 config();
 import { Configuration, OpenAIApi } from "openai";
 import readline from "readline";
-let key=process.env.OPEN_AI_API_KEY;
+let key="sk-svcacct-tOkyPHZ8f4bM4nioJ87dT3BlbkFJxz5lQPguvzzwB6tMPAPt76";
 key=key.substring(0,key.length-2);
 console.log(key);
 const openAi = new OpenAIApi(
