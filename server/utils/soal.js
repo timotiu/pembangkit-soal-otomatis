@@ -2,8 +2,8 @@ import { config } from "dotenv";
 config();
 import { Configuration, OpenAIApi } from "openai";
 import readline from "readline";
-let key="sk-svcacct-tOkyPHZ8f4bM4nioJ87dT3BlbkFJxz5lQPguvzzwB6tMPAPt76";
-key=key.substring(0,key.length-2);
+let key="1sk-tyHvoGQvdu0KWgoONieYE_DFw5hgqC4eKnQGkEMy7MT3BlbkFJm4SISDqWOMfK7l9B00Cf_ohtH-ml7Dt44FalWZe40A76";
+key=key.substring(1,key.length-2);
 console.log(key);
 const openAi = new OpenAIApi(
   new Configuration({
